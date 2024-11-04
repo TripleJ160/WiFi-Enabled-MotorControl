@@ -3,6 +3,7 @@
 ## Overview
 
 This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module to create a remote-controlled system for managing a DC motor and displaying information on an LCD. Users can set the motor speed via a web interface, and the system provides real-time feedback on an I2C-connected LCD.
+
 ![image](https://github.com/user-attachments/assets/13beddea-73f8-476a-a71e-e3b1584126c6)
 
 
