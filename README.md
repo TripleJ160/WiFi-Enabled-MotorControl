@@ -2,9 +2,9 @@
 
 ## Overview
 
-This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module to create a remote-controlled system for managing a DC motor and displaying information on an LCD. Users can set the motor speed via a web interface, and the system provides real-time feedback on an I2C-connected LCD.
+This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module and an L298 H-Bridge to create a remote-controlled system for managing a DC motor and displaying information on an LCD. Users can set the motor speed via a web interface, and the system provides real-time feedback on an I2C-connected LCD.
 
-![image](https://github.com/user-attachments/assets/13beddea-73f8-476a-a71e-e3b1584126c6)
+![image](https://github.com/user-attachments/assets/62348e44-cd8d-4711-ab83-0e05e218ceaa)
 
 
 ## Components
@@ -40,6 +40,13 @@ This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module t
     - Maps the speed (0-100) to PWM range (0-255) using `map()`.
     - `analogWrite(output2, dutyValue)`: Sets the PWM signal to control motor speed.
 
+### L298 H-Bridge
+
+- **Purpose**: The L298 H-Bridge is used to control the direction and speed of the DC motor.
+- **Connections**:
+  - **PWM Signal**: Connect the `output2` pin from the ESP8266 to the enable pin on the L298 to control speed via PWM.
+  - **Direction Control**: Use additional GPIO pins from the ESP8266 or MSP430 to control the logic inputs on the L298, determining the motor's direction.
+
 ## Communication
 
 - **Interfacing**: While the MSP430 and ESP8266 operate independently, they could be integrated via I2C or UART for enhanced control and feedback.
@@ -54,10 +61,13 @@ This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module t
    - Users access the web server and input a desired motor speed.
    - The server processes this input and adjusts the motor speed via PWM.
 
-3. **Display**: 
+3. **Motor Control**:
+   - The PWM signal from the ESP8266 controls the L298 H-Bridge, which drives the motor according to the user-defined speed and direction.
+
+4. **Display**: 
    - The MSP430 reads the ADC input and displays the corresponding duty cycle on the LCD.
 
-4. **Feedback**: 
+5. **Feedback**: 
    - Future enhancements could include sending ADC values or other data from the MSP430 to the ESP8266 for display on the web interface.
 
 ## Future Enhancements
@@ -68,4 +78,4 @@ This project integrates an MSP430 microcontroller with an ESP8266 Wi-Fi module t
 
 ## Conclusion
 
-This project demonstrates the integration of microcontrollers and Wi-Fi modules in IoT applications, allowing remote control and monitoring of hardware components. The modular design facilitates future enhancements and scalability.
+This project demonstrates the integration of microcontrollers, Wi-Fi modules, and motor drivers in IoT applications, allowing remote control and monitoring of hardware components. The modular design facilitates future enhancements and scalability.
