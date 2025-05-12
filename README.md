@@ -1,4 +1,4 @@
-# IoT Motor Control with LCD Display
+# WiFi-based Motor Control with LCD Display
 
 ## Overview
 
